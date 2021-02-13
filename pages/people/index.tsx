@@ -2,17 +2,17 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Layout from '../../components/Layout';
 import Link from 'next/link';
+import {getPeopleList} from '../service';
 
-const Index: React.FunctionComponent = () => {
+const Index: React.FunctionComponent<any> = () => {
 
     const [peopleData, setPeopleData] = useState([]);
-    const peopleUrl = "https://swapi.dev/api/people/";
     useEffect(() => {
-        axios.get(peopleUrl).then((res) => {
-            return res.data;
-        }).then((res: any) => { //TODO
+        getPeopleList().then((res) => { //TODO
             if(res.count > 0) setPeopleData(res.results);
         });
+
+        return () => setPeopleData([]);
     }, []);
 
     const renderList = () => {
@@ -26,12 +26,12 @@ const Index: React.FunctionComponent = () => {
     }
 
     if(!peopleData.length){
-        return <div data-testId="loading">Loading Data...</div>
+        return <div data-testid="loading">Loading Data...</div>
     }
 
   return (
     <Layout title="People">
-      <ul>
+      <ul data-testid="resolved">
           {renderList()}
       </ul>
     </Layout>

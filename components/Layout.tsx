@@ -15,7 +15,7 @@ const Layout: React.FunctionComponent<LayoutProps> = ({ children, title }) => {
     const router = useRouter()
 
     React.useEffect(() => {
-        if(router.pathname === '/') router.push('/people');
+        if(router && router.pathname === '/') router.push('/people');
     }, []);
 
 return (
