@@ -17,7 +17,7 @@ const Layout: React.FunctionComponent<LayoutProps> = ({ children, title }) => {
     React.useEffect(() => {
         if(router.pathname === '/') router.push('/people');
     }, []);
-
+//This one is a new comment for conflict without space
 return (
   <div style={layoutStyle}>
     <Head>
