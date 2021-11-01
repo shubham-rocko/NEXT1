@@ -2,15 +2,14 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Layout from '../../components/Layout';
 import Link from 'next/link';
+import {getSpeciesList} from '../service';
 
 const Index: React.FunctionComponent = () => {
 
     const [speciessData, setspeciessData] = useState([]);
-    const speciesUrl = "https://swapi.dev/api/species/";
+    
     useEffect(() => {
-        axios.get(speciesUrl).then((res) => {
-            return res.data;
-        }).then((res: any) => { //TODO
+        getSpeciesList().then((res: any) => { //TODO
             if(res.count > 0) setspeciessData(res.results);
         });
     }, []);
